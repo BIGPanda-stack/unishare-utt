@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UniShare - Sàn Chia Sẻ & Pass Đồ Sinh Viên</title>
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Nút Đăng Đồ Nổi (FAB) cho Mobile -->
+    <button class="fab-btn" id="fabPostBtn" title="Đăng đồ pass">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo">
+          <img src="assets/utt-logo.png" alt="UTT Logo" class="logo-img" />
+          <span class="logo-text">UniShare</span>
+        </a>
+        <div class="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Tìm giáo trình, máy tính, đồ KTX..."
+          />
+          <button id="searchBtn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+        <button class="btn-primary" id="openPostModalBtn">
+          <i class="fa-solid fa-plus"></i> Đăng đồ Pass
+        </button>
+      </div>
+    </header>
+
+    <!-- Danh mục lọc đồ -->
+    <div class="container main-content">
+      <div class="categories-bar">
+        <button class="cat-pill active" data-cat="all">Tất cả</button>
+        <button class="cat-pill" data-cat="sach">📚 Giáo trình / Sách</button>
+        <button class="cat-pill" data-cat="dientu">💻 Thiết bị điện tử</button>
+        <button class="cat-pill" data-cat="dungcu">✏️ Đồ dùng học tập</button>
+        <button class="cat-pill" data-cat="ktx">🧺 Đồ Ký túc xá</button>
+        <button class="cat-pill" data-cat="khac">📦 Khác</button>
+      </div>
+
+      <!-- Bảng tin danh sách sản phẩm kiểu E-commerce -->
+      <section class="product-section">
+        <h2 class="section-title">Danh sách món đồ mới nhất</h2>
+        <div class="product-grid" id="productGrid">
+          <!-- Data bài đăng sẽ tự động vẽ ra đây -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Modal Form Đăng Đồ -->
+    <div class="modal" id="postModal">
+      <div class="modal-content">
+        <span class="close-btn" id="closePostModal">&times;</span>
+        <h2><i class="fa-solid fa-box-archive"></i> Đăng món đồ muốn pass</h2>
+        <form id="shareForm">
+          <div class="form-group">
+            <label>Tên món đồ / Tiêu đề (*):</label>
+            <input
+              type="text"
+              id="itemTitle"
+              placeholder="Ví dụ: Giáo trình Triết học Mác - Lênin"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Danh mục (*):</label>
+              <select id="itemCategory" required>
+                <option value="sach">📚 Giáo trình / Sách</option>
+                <option value="dientu">💻 Thiết bị điện tử</option>
+                <option value="dungcu">✏️ Đồ dùng học tập</option>
+                <option value="ktx">🧺 Đồ Ký túc xá</option>
+                <option value="khac">📦 Khác</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Giá pass (*):</label>
+              <input
+                type="text"
+                id="itemPrice"
+                placeholder="Ví dụ: Miễn phí, 20k, 1 ly trà sữa..."
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Ảnh món đồ (Tối đa 4 ảnh) (*):</label>
+            <input
+              type="file"
+              id="itemImage"
+              accept="image/*"
+              multiple
+              required
+            />
+            <small>Ảnh sẽ được tự động nén nhẹ trước khi tải lên.</small>
+          </div>
+
+          <div class="form-group">
+            <label>Mô tả tình trạng món đồ (*):</label>
+            <textarea
+              id="itemDescription"
+              rows="3"
+              placeholder="Sách còn mới 90%, không ghi chép lung tung..."
+              required
+            ></textarea>
+          </div>
+
+          <hr class="form-divider" />
+          <h3>
+            <i class="fa-solid fa-address-card"></i> Thông tin liên hệ công khai
+          </h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Tên / Biệt danh (*):</label>
+              <input
+                type="text"
+                id="sellerName"
+                placeholder="Ví dụ: Nam K65"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Số điện thoại / Zalo (*):</label>
+              <input
+                type="text"
+                id="sellerPhone"
+                placeholder="0987654321"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Link Facebook cá nhân (Không bắt buộc):</label>
+            <input
+              type="url"
+              id="sellerFb"
+              placeholder="https://facebook.com/username"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Địa chỉ lấy đồ (*):</label>
+            <input
+              type="text"
+              id="sellerAddress"
+              placeholder="Ví dụ: Phòng 302 - KTX B4 hoặc Cổng chính cơ sở A"
+              required
+            />
+          </div>
+
+          <div class="form-group highlight-bg">
+            <label>Mã PIN bảo mật bài đăng (4 số) (*):</label>
+            <input
+              type="password"
+              id="postPin"
+              maxlength="4"
+              pattern="\d{4}"
+              placeholder="Dùng 4 số này để đổi trạng thái / xóa bài sau này"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            Đăng Tin Nhanh
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal Chi Tiết Món Đồ -->
+    <div class="modal" id="detailModal">
+      <div class="modal-content modal-lg">
+        <span class="close-btn" id="closeDetailModal">&times;</span>
+        <div id="detailContent">
+          <!-- Nội dung chi tiết bài đăng sẽ được render dynamic -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Nhúng Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- App Entry Point (JS Modules) -->
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

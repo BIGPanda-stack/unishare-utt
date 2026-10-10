@@ -1,0 +1,462 @@
+:root {
+  --primary-color: #f59039;
+  --primary-hover: #ee8326;
+  --bg-color: #f5f5f5;
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --text-sub: #666666;
+  --border-color: #e0e0e0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Header Navbar */
+.navbar {
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 70px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.logo:hover .logo-img {
+  transform: scale(1.1);
+}
+
+.logo-text {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  letter-spacing: -0.5px;
+}
+
+.search-bar {
+  display: flex;
+  flex: 1;
+  max-width: 500px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid var(--primary-color);
+  border-radius: 6px 0 0 6px;
+  outline: none;
+}
+
+.search-bar button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Category Bar */
+.categories-bar {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  overflow-x: auto;
+  padding-bottom: 5px;
+  scrollbar-width: none;
+}
+.categories-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-pill {
+  background: white;
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.cat-pill.active,
+.cat-pill:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Product Section & Grid TO ĐẸP CHO PC (220px+) */
+.section-title {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+/* Khôi phục thẻ sản phẩm chuẩn đẹp cho PC */
+.product-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (hover: hover) {
+  .product-card:hover {
+    transform: translateY(-6px) scale(1.03); /* Phóng to nhẹ nhàng chuẩn PC */
+    box-shadow: 0 10px 25px rgba(245, 130, 32, 0.18);
+  }
+}
+
+.card-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 180px; /* Khôi phục 180px cho PC */
+  overflow: hidden;
+}
+
+.card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+@media (hover: hover) {
+  .product-card:hover .card-img-wrapper img {
+    transform: scale(1.06);
+  }
+}
+
+.status-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.status-badge.available {
+  background: #2e7d32;
+}
+.status-badge.reserved {
+  background: #ed6c02;
+}
+
+.card-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.3;
+  height: 2.6em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.card-price {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card-address {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  margin-top: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  width: 100%;
+  max-width: 550px;
+  border-radius: 10px;
+  padding: 25px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-lg {
+  max-width: 800px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.form-divider {
+  margin: 20px 0 15px 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+.highlight-bg {
+  background: #fff8f6;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px dashed var(--primary-color);
+}
+
+.btn-submit {
+  width: 100%;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Detail Modal Specifics */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.detail-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.contact-box {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+.btn-copy {
+  background: #e3f2fd;
+  color: #1976d2;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.fab-btn {
+  display: none;
+}
+
+/* ========================================================
+   CHỈ TỐI ƯU KHI DÙNG TRÊN ĐIỆN THOẠI (MÀN HÌNH NHỎ < 768px)
+   ======================================================== */
+@media screen and (max-width: 768px) {
+  .navbar {
+    height: 60px;
+    padding: 0 10px;
+  }
+  .nav-container {
+    padding: 0;
+    gap: 10px;
+  }
+  .logo-text {
+    font-size: 1.3rem;
+  }
+  .logo-img {
+    height: 32px;
+  }
+
+  /* Lưới 2 cột cân đối riêng cho mobile */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .card-img-wrapper {
+    height: 145px;
+  }
+
+  /* Chống zoom chữ trên iPhone */
+  .form-group input,
+  .form-group select,
+  .form-group textarea,
+  input[type="password"],
+  input[type="text"] {
+    font-size: 16px !important;
+  }
+
+  .form-row,
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Modal Bottom Sheet di động */
+  .modal {
+    align-items: flex-end;
+  }
+  .modal-content {
+    border-radius: 16px 16px 0 0;
+    padding: 20px 15px;
+  }
+
+  /* Nút FAB nổi trên di động */
+  .fab-btn {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    color: white;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 12px rgba(245, 130, 32, 0.4);
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+  }
+}
