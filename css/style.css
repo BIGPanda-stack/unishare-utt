@@ -390,40 +390,77 @@ body {
 }
 
 /* ========================================================
-   CHỈ TỐI ƯU KHI DÙNG TRÊN ĐIỆN THOẠI (MÀN HÌNH NHỎ < 768px)
+   TỐI ƯU CHUẨN XÁC CHO ĐIỆN THOẠI (MÀN HÌNH NHỎ < 768px)
    ======================================================== */
 @media screen and (max-width: 768px) {
   .navbar {
-    height: 60px;
-    padding: 0 10px;
-  }
-  .nav-container {
-    padding: 0;
-    gap: 10px;
-  }
-  .logo-text {
-    font-size: 1.3rem;
-  }
-  .logo-img {
-    height: 32px;
+    height: auto !important;
+    padding: 10px 12px !important;
   }
 
-  /* Lưới 2 cột cân đối riêng cho mobile */
+  .nav-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  /* Tầng 1: Logo bên trái */
+  .logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .logo-text {
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
+
+  .logo-img {
+    height: 26px;
+  }
+
+  /* Tầng 1: Nút đăng đồ bên phải */
+  #openPostModalBtn {
+    flex: 0 0 auto;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  /* Tầng 2: Thanh tìm kiếm chiếm trọn 100% chiều rộng bên dưới */
+  .search-bar {
+    flex: 0 0 100% !important;
+    order: 10 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-top: 4px;
+  }
+
+  .search-bar input {
+    font-size: 16px !important; /* Chống tự động zoom trên iPhone */
+    padding: 8px 12px;
+    width: 100%;
+    border-radius: 6px 0 0 6px;
+  }
+
+  .search-bar button {
+    padding: 0 14px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* Lưới sản phẩm 2 cột cân đối */
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
   .card-img-wrapper {
-    height: 145px;
-  }
-
-  /* Chống zoom chữ trên iPhone */
-  .form-group input,
-  .form-group select,
-  .form-group textarea,
-  input[type="password"],
-  input[type="text"] {
-    font-size: 16px !important;
+    height: 140px;
   }
 
   .form-row,
@@ -431,7 +468,7 @@ body {
     grid-template-columns: 1fr;
   }
 
-  /* Modal Bottom Sheet di động */
+  /* Modal dạng Bottom Sheet trượt từ dưới lên */
   .modal {
     align-items: flex-end;
   }
@@ -440,7 +477,7 @@ body {
     padding: 20px 15px;
   }
 
-  /* Nút FAB nổi trên di động */
+  /* Nút FAB nổi góc phải dưới */
   .fab-btn {
     display: flex;
     position: fixed;
@@ -458,5 +495,85 @@ body {
     border: none;
     cursor: pointer;
     z-index: 999;
+  }
+}
+/* Hiệu ứng Pop-in nảy nhẹ cho Modal Thành Công */
+#successModal.active .modal-content {
+  animation: popInModal 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popInModal {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* Styling riêng cho Modal Thành Công (Đẹp mắt trên cả PC & Mobile) */
+.success-card {
+  text-align: center;
+  max-width: 420px !important;
+  padding: 32px 24px !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18) !important;
+  margin: auto;
+}
+
+.success-icon {
+  font-size: 3.8rem;
+  line-height: 1;
+  margin-bottom: 12px;
+  animation: bounceIcon 0.6s ease;
+}
+
+.success-title {
+  color: var(--primary-color);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.success-desc {
+  color: var(--text-sub);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.btn-success-close {
+  width: 100%;
+  padding: 13px;
+  font-size: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(245, 130, 32, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-success-close:active {
+  transform: scale(0.97);
+}
+
+@keyframes bounceIcon {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Đảm bảo căn giữa màn hình cho cả mobile */
+@media screen and (max-width: 768px) {
+  #successModal {
+    align-items: center !important; /* Luôn căn giữa màn hình di động chứ không đẩy xuống đáy */
+    padding: 20px;
   }
 }

@@ -36,8 +36,18 @@ export function setupFormHandler(onSuccess) {
 
       await dbService.createPost(newPost);
 
-      alert("Đăng bài thành công!");
       form.reset();
+
+      // 1. Ẩn ngay lập tức modal Form Đăng Đồ
+      const postModal = document.getElementById("postModal");
+      if (postModal) postModal.classList.remove("active");
+
+      // 2. Mở Modal Thành Công
+      const successModal = document.getElementById("successModal");
+      if (successModal) {
+        successModal.classList.add("active");
+      }
+
       onSuccess();
     } catch (error) {
       alert("Đã xảy ra lỗi khi đăng bài!");

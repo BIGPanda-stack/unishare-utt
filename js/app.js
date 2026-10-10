@@ -110,6 +110,25 @@ function setupModals() {
     if (e.target === postModal) postModal.classList.remove("active");
     if (e.target === detailModal) detailModal.classList.remove("active");
   };
+
+  // Xử lý đóng Modal Thông báo Thành Công
+  const successModal = document.getElementById("successModal");
+  const closeSuccessBtn = document.getElementById("closeSuccessModal");
+
+  if (closeSuccessBtn && successModal) {
+    closeSuccessBtn.onclick = (e) => {
+      e.stopPropagation();
+      successModal.classList.remove("active");
+    };
+  }
+
+  if (successModal) {
+    successModal.addEventListener("click", (e) => {
+      if (e.target === successModal) {
+        successModal.classList.remove("active");
+      }
+    });
+  }
 }
 
 function setupCategoryFilter() {

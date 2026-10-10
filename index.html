@@ -199,5 +199,24 @@
 
     <!-- App Entry Point (JS Modules) -->
     <script type="module" src="js/app.js"></script>
+
+    <!-- Modal Thông Báo Đăng Bài Thành Công -->
+    <div class="modal" id="successModal" style="z-index: 3000">
+      <div class="modal-content success-card">
+        <div class="success-icon">🎉</div>
+        <h2 class="success-title">Đăng bài thành công rực rỡ!</h2>
+        <p class="success-desc">
+          Món đồ của bạn đã sẵn sàng trên sàn <strong>UniShare</strong>.<br />
+          💡
+          <i
+            >Nhắc nhỏ: Hãy nhớ mã PIN 4 số của bạn để chuyển trạng thái thành
+            "Đã pass" khi giao dịch xong nhé!</i
+          >
+        </p>
+        <button class="btn-primary btn-success-close" id="closeSuccessModal">
+          Tuyệt vời, xem ngay!
+        </button>
+      </div>
+    </div>
   </body>
 </html>
